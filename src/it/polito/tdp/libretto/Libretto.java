@@ -30,7 +30,7 @@ public class Libretto {
 	/**
 	 * Seleziona il sottoinsieme di voti che hanno il punteggio specificato
 	 * @param punti punteggio da ricerca
-	 * @return lista di {link Voto} aventi que punteggio (eventualmente vuota)
+	 * @return lista di {@link Voto} aventi quel punteggio (eventualmente vuota)
 	 */
 	
 	
@@ -46,6 +46,26 @@ public class Libretto {
 		return result;
 		
 		
+	}
+	
+	/**
+	 * Ricerca un voto {@link Voto} relativo al corso per cui è specificato il nome
+	 * 
+	 * @param nomeEsame nome del corso da ricercare
+	 * @return il {@link Voto} corrispondente, oppure {@code null} se non c'è
+	 */
+	
+	public Voto cercaEsame(String nomeEsame) {
+		for(Voto v:this.voti) {
+			
+			if(v.getCorso().equals(nomeEsame)) { //compareTo si può usare solo per quegli oggetti per cui si può definire un ordinamento naturale degli oggetti
+				
+				return v;
+			}
+			
+		}
+		
+		return null;
 	}
 
 }
