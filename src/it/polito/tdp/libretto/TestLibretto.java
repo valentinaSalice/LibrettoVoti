@@ -5,7 +5,7 @@ import java.util.List;
 
 public class TestLibretto {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) { //per allineare unire il master e il branch si può usare merge di team. Per riallineare il remoto usare push to upstream
 		Libretto libr=new Libretto();
 		
 		libr.add(new Voto(30, "Analisi I", LocalDate.of(2017, 1, 15)));
@@ -34,6 +34,17 @@ public class TestLibretto {
 		System.out.format("Il voto %s è %s\n", sbagliato.toString(), libr.esisteGiaVoto(sbagliato));
 		System.out.format("Il voto %s è %s\n", mancante.toString(), libr.esisteGiaVoto(mancante));
 
+		
+		System.out.format("Il voto %s è %s\n", giusto.toString(), libr.votoConflitto(giusto));
+		System.out.format("Il voto %s è %s\n", sbagliato.toString(), libr.votoConflitto(sbagliato));
+		System.out.format("Il voto %s è %s\n", mancante.toString(), libr.votoConflitto(mancante));
+		
+		libr.add(giusto);
+		libr.add(sbagliato);
+		libr.add(mancante);
+		
+		System.out.println(libr.toString());
+		
 	}
 
 }

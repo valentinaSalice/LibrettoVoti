@@ -18,14 +18,25 @@ public class Libretto {
 		
 	}
 	
-	/**
+	/*/**
 	 * Aggiunge un nuovo voto al libretto
 	 * @param v {@link Voto} da aggiungere
 	 */
-	public void add(Voto v) {
+	//public void add(Voto v) { //.add in generale restituisce true se la collezione è cambiata altrimenti restituisce false, cambio il metodo da void in boolean
+	
+	public boolean add(Voto v) {
+		if(!this.esisteGiaVoto(v) && !this.votoConflitto(v)) {
+			
+			voti.add(v);
+			return true;
+		}
+			
+		else
+			return false;
 		
-		voti.add(v);
 	}
+	
+	
 	
 	/**
 	 * Seleziona il sottoinsieme di voti che hanno il punteggio specificato
@@ -107,6 +118,27 @@ public class Libretto {
 		
 		
 		
+	}
+	/**
+	 * Mi dice se il {@link Voto} {@code v} è in conflitto con uno dei voti esistenti
+	 * Se il voto non esiste, non c'è conflitto. Se esiste e ha un punteggio diverso, c'è conflitto
+	 * @param v
+	 * @return
+	 */
+	
+	public boolean votoConflitto(Voto v) {
+		
+		int posizione=this.voti.indexOf(v);
+		
+		if(posizione==-1)
+			return false;
+		else 
+			
+			return (v.getPunti()==this.voti.get(posizione).getPunti());
+	}
+	
+	public String toString() {
+		return this.voti.toString();
 	}
 
 }
