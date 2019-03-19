@@ -55,17 +55,24 @@ public class Libretto {
 	 * @return il {@link Voto} corrispondente, oppure {@code null} se non c'è
 	 */
 	
+	//Il metodo seguente non avrebbe bisogno del for perché esiste già una funzione della libreria che consente di cercare un elemento nella lista (indexOf) che ci restituisce la posizione dell'oggetto 
 	public Voto cercaEsame(String nomeEsame) {
-		for(Voto v:this.voti) {
+		
+		Voto voto= new Voto(0,nomeEsame, null); //mi serve solo come criterio di ricerca che mi permette di valutare se c'è un oggetto con lo stesso nome esame 
+		/*for(Voto v:this.voti) {
 			
 			if(v.getCorso().equals(nomeEsame)) { //compareTo si può usare solo per quegli oggetti per cui si può definire un ordinamento naturale degli oggetti
 				
 				return v;
 			}
 			
-		}
+		}*/
 		
-		return null;
+		int posizione=this.voti.indexOf(voto);
+		if(posizione==-1)
+		    return null;
+		else
+			return this.voti.get(posizione);
 	}
 	
 	/**
@@ -74,9 +81,11 @@ public class Libretto {
 	 * @return {@code true} se ha trovato un corso e punteggio uguali, {@code false} se non ha trovato il corso, oppure l'ha trovato con voto diverso
 	 */
 	
-	public boolean esisteGiaVoto(Voto v) {
+	public boolean esisteGiaVoto(Voto v) { //anche in questo caso si poteva utilizzare indexOf
 		
-		Voto trovato=this.cercaEsame(v.getCorso());
+		int posizione=this.voti.indexOf(v);
+		
+		/*Voto trovato=this.cercaEsame(v.getCorso());
 		
 		if(trovato==null)
 			return false;
@@ -85,7 +94,15 @@ public class Libretto {
 			return true;
 		}
 		else
+			return false;*/
+		
+		if(posizione==-1)
 			return false;
+		else 
+			
+			return (v.getPunti()==this.voti.get(posizione).getPunti());
+			
+		
 		
 		
 		
